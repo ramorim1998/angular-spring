@@ -1,0 +1,6 @@
+[
+  { "_id": 1, "name": "cursinho 1", "category": "back-end" },
+  { "_id": 2, "name": "cursinho 2", "category": "back-end" },
+  { "_id": 3, "name": "cursinho 3", "category": "front-end" },
+  { "_id": 4, "name": "cursinho 4", "category": "front-end" }
+]
