@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Curso } from '../model/curso';
 import { HttpClient } from '@angular/common/http';
-import { delay, first, take, tap } from 'rxjs';
+import { delay, first, take, tap, Observable } from 'rxjs';
 
 
 
@@ -10,7 +10,7 @@ import { delay, first, take, tap } from 'rxjs';
 })
 export class CoursesService {
 
-  private readonly API = '/assets/cursos.json';
+  private readonly API = '/api/cursos';
 
   constructor(private http: HttpClient) { }
 
@@ -22,5 +22,10 @@ export class CoursesService {
         console.log(cursos)
       })
     );
+  }
+
+  save(record: Partial<Curso>): Observable<Curso>{
+    console.log(record)
+    return this.http.post<Curso>(this.API, record)
   }
 }
