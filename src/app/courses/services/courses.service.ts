@@ -19,13 +19,28 @@ export class CoursesService {
     .pipe(
       first(),
       tap(cursos => {
-        console.log(cursos)
       })
     );
   }
 
   save(record: Partial<Curso>): Observable<Curso>{
-    console.log(record)
+    if(record._id){
+
+      return this.update(record);
+    }
+
+    return this.create(record);
+  }
+
+  findById(id: string){
+    return this.http.get<Curso>(`${this.API}/${id}`)
+  }
+  private create(record: Partial<Curso>){
     return this.http.post<Curso>(this.API, record)
+  }
+
+  private update (record: Partial<Curso>){
+    return this.http.put<Curso>(`${this.API}/${record._id}`, record)
+
   }
 }

@@ -4,7 +4,7 @@
   </mat-toolbar>
 
   <div class="flex mat-elevation-z8">
-    <app-cursos-list *ngIf="cursos$ | async as cursos; else loading" [cursos]="cursos" (add)="onAdd()"></app-cursos-list>
+    <app-cursos-list *ngIf="cursos$ | async as cursos; else loading" [cursos]="cursos" (add)="onAdd()" (edit)="onEdit($event)"></app-cursos-list>
 
 
   <ng-template #loading>

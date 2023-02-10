@@ -24,7 +24,7 @@
 
    <mat-cell *matCellDef="let course" class="action">
     <button mat-icon-button color="primary" aria-label="editar curso">
-      <mat-icon>edit</mat-icon>
+      <mat-icon (click)="onEdit(course)">edit</mat-icon>
     </button>
 
     <button mat-icon-button color="warn" aria-label="remover curso">
