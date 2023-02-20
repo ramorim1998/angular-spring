@@ -2,7 +2,7 @@ import { Curso } from './../../model/curso';
 import { ActivatedRoute } from '@angular/router';
 import { CoursesService } from '../../services/courses.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NonNullableFormBuilder, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, NonNullableFormBuilder, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
 
@@ -15,8 +15,8 @@ export class CursoFormComponent implements OnInit {
 
   form = this.fb.group({
     _id: [''],
-    name: [''],
-    category: ['']
+    name: ['',[Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
+    category: ['',[Validators.required, Validators.minLength(1)]]
   })
 
 
@@ -40,6 +40,7 @@ export class CursoFormComponent implements OnInit {
   }
 
   onSubmit(){
+    if(this.form.valid){
     this.service.save(this.form.value).subscribe(res => {
       if(res){
         this.success()
@@ -48,6 +49,7 @@ export class CursoFormComponent implements OnInit {
     }, error => {
      this.handleError()
     })
+  }
   }
   onCancel(){
     this.location.back()
@@ -63,6 +65,22 @@ export class CursoFormComponent implements OnInit {
     this.snackBar.open("Curso salvo com sucesso","",{
       duration: 2000
     })
+  }
+
+  getErrorMessage(fieldName: string){
+    const field =  this.form.get(fieldName)
+    if(field?.hasError('required')){
+      return 'Campo obrigatório'
+    }
+    if(field?.hasError('minlength')){
+      const requiredLength = field.errors ? field.errors['minlength']['requiredLength'] : 5
+      return `Tamanho mínimo precisa ser de ${requiredLength}`
+    }
+    if(field?.hasError('maxlength')){
+      const requiredLength = field.errors ? field.errors['maxlength']['requiredLength'] : 100
+      return `Tamanho máximo excedido de ${requiredLength}`
+    }
+    return 'Campo inválido'
   }
 
 }
