@@ -12,6 +12,8 @@ export class CursosListComponent implements OnInit {
 @Input() cursos:Curso[] = [];
 @Output() add = new EventEmitter(false);
 @Output() edit = new EventEmitter(false);
+@Output() remove = new EventEmitter(false);
+
   constructor(
 
     ) { }
@@ -28,6 +30,10 @@ export class CursosListComponent implements OnInit {
 
   onEdit(course: Curso){
     this.edit.emit(course);
+  }
+
+  onDelete(course: Curso){
+    this.remove.emit(course)
   }
 
 }

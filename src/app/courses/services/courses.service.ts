@@ -35,6 +35,7 @@ export class CoursesService {
   findById(id: string){
     return this.http.get<Curso>(`${this.API}/${id}`)
   }
+
   private create(record: Partial<Curso>){
     return this.http.post<Curso>(this.API, record)
   }
@@ -43,4 +44,10 @@ export class CoursesService {
     return this.http.put<Curso>(`${this.API}/${record._id}`, record)
 
   }
+
+  delete (id: string){
+    return this.http.delete(`${this.API}/${id}`).pipe(first())
+
+  }
+
 }
