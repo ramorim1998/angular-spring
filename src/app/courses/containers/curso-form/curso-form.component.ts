@@ -2,8 +2,8 @@ import { Curso } from './../../model/curso';
 import { ActivatedRoute } from '@angular/router';
 import { CoursesService } from '../../services/courses.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NonNullableFormBuilder, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
+import {MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
 
 @Component({
