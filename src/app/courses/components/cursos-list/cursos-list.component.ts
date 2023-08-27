@@ -1,6 +1,6 @@
-import { Router, ActivatedRoute } from '@angular/router';
-import { Curso } from '../../model/curso';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Curso } from '../../model/curso';
+
 
 @Component({
   selector: 'app-cursos-list',
@@ -9,31 +9,27 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class CursosListComponent implements OnInit {
 
-@Input() cursos:Curso[] = [];
-@Output() add = new EventEmitter(false);
-@Output() edit = new EventEmitter(false);
-@Output() remove = new EventEmitter(false);
+  @Input() cursos: Curso[] = [];
+  @Output() add = new EventEmitter(false);
+  @Output() edit = new EventEmitter(false);
+  @Output() remove = new EventEmitter(false);
 
-  constructor(
+  readonly displayedColumns = ['name', 'category', 'actions'];
 
-    ) { }
+  constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
-  displayedColumns = ['name', 'category', 'actions']
-
-
-  onAdd(){
+  onAdd() {
     this.add.emit(true);
   }
 
-  onEdit(course: Curso){
+  onEdit(course: Curso) {
     this.edit.emit(course);
   }
 
-  onDelete(course: Curso){
-    this.remove.emit(course)
+  onDelete(course: Curso) {
+    this.remove.emit(course);
   }
 
 }

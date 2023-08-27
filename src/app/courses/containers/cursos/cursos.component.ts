@@ -18,8 +18,6 @@ export class CursosComponent implements OnInit {
 
   cursos$: Observable<Curso[]> | null = null;
 
-  displayedColumns = ['name', 'category', 'actions']
-
   constructor(
     private cursoService: CoursesService,
     public dialog: MatDialog,

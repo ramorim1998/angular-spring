@@ -14,13 +14,17 @@ export class CoursesService {
 
   constructor(private http: HttpClient) { }
 
-  list(){
+  list() {
     return this.http.get<Curso[]>(this.API)
-    .pipe(
-      first(),
-      tap(cursos => {
-      })
-    );
+      .pipe(
+        first(),
+        //delay(5000),
+        // tap(courses => console.log(courses))
+      );
+  }
+
+  loadById(id: string) {
+    return this.http.get<Curso>(`${this.API}/${id}`);
   }
 
   save(record: Partial<Curso>): Observable<Curso>{

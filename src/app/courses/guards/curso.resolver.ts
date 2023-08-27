@@ -21,6 +21,6 @@ export class CursoResolver implements Resolve<Curso> {
       console.log('chegou aqui')
       return this.service.findById(route.params['id']);
     }
-    return of({_id: '', name: '', category: ''});
+    return of({_id: '', name: '', category: '', licao: []});
   }
 }
